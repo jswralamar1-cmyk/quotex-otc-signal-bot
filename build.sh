@@ -1,7 +1,10 @@
 #!/bin/bash
 set -e
 
-echo "=== Installing Python dependencies ==="
+echo "=== Installing numpy first ==="
+pip install numpy
+
+echo "=== Installing all dependencies ==="
 pip install -r requirements.txt
 
 echo "=== Installing Playwright ==="
