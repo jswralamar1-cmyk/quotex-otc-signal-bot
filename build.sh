@@ -2,10 +2,13 @@
 set -e
 
 echo "=== Installing Python dependencies ==="
-pip install pyquotex@git+https://github.com/cleitonleonel/pyquotex.git requests playwright
+pip install -r requirements.txt
 
-echo "=== Installing Playwright Chromium ==="
+echo "=== Installing Playwright ==="
+pip install playwright
+
+echo "=== Installing Chromium browser ==="
 playwright install chromium
-playwright install-deps chromium
+playwright install-deps chromium || true
 
 echo "=== Build complete ==="
