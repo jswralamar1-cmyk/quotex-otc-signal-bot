@@ -1,10 +1,20 @@
-FROM python:3.12-slim
+FROM ubuntu:22.04
 
-# تثبيت المتطلبات النظامية لـ Playwright
+ENV DEBIAN_FRONTEND=noninteractive
+ENV PYTHONUNBUFFERED=1
+
+# تثبيت Python وGit والمتطلبات
 RUN apt-get update && apt-get install -y \
+    python3.11 \
+    python3-pip \
+    python3.11-dev \
     git \
-    wget \
     curl \
+    wget \
+    && rm -rf /var/lib/apt/lists/*
+
+# تثبيت Playwright system deps
+RUN apt-get update && apt-get install -y \
     libnss3 \
     libnspr4 \
     libatk1.0-0 \
@@ -23,19 +33,22 @@ RUN apt-get update && apt-get install -y \
     libcairo2 \
     libatspi2.0-0 \
     libwayland-client0 \
+    libx11-6 \
+    libxext6 \
+    fonts-liberation \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
 # تثبيت المكتبات
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip3 install --no-cache-dir -r requirements.txt
 
 # تثبيت Playwright Chromium
-RUN playwright install chromium
+RUN python3.11 -m playwright install chromium
 
 # نسخ الكود
 COPY . .
 
 # تشغيل البوت
-CMD ["python", "bot.py"]
+CMD ["python3.11", "bot.py"]
