@@ -1,3 +1,8 @@
 numpy
 requests
+aiohttp
+openai
+matplotlib
+mplfinance
+Pillow
 pyquotex @ git+https://github.com/cleitonleonel/pyquotex.git

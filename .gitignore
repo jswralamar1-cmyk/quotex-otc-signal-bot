@@ -1,7 +1,20 @@
+# بيانات حساسة وملفات runtime
+session.json
+*.log
 __pycache__/
 *.pyc
 *.pyo
-session.json
-settings/
-*.log
 .env
+
+# بيانات مؤقتة (تُعاد من السيرفر)
+candles.json
+tracks.json
+chat_history.json
+
+# Replit
+.replit
+replit.nix
+.upm/
+.config/
+.local/
+.cache/
